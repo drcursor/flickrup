@@ -27,7 +27,7 @@ sudo cp 01_process /etc/usbmount/mount.d
 sudo chmod a+x /etc/usbmount/mount.d/01_process
 ~~~~
 - Define correct API key and secret in /etc/flickrup.conf (Default should be OK)
-- Define from and to email in in /etc/flickrup.conf
+- Define from and to email in /etc/flickrup.conf
 - Run /usb/bin/flickrup.py and follow screen instructions
 
 ## Configuration
