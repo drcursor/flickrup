@@ -5,10 +5,11 @@ Simple script that automatically uploads all photo files from a connected remova
 This should be run on a standalone device (eg. Raspberry PI).
 
 ## Requirements
-- Python 3
-- flickrapi package
-- working local sendmail
-- usbmount
+- A flickr account (like [mine](https://www.flickr.com/photos/drcursor/));
+- Python 3;
+- flickrapi package;
+- working local sendmail;
+- usbmount;
 
 ## Install
 The following procedure assumes you have a working Debian/Raspbian system with network access.
