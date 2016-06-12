@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/usr/bin/flickrup.py $UM_MOUNTPOINT
+
+umount $UM_MOUNTPOINT
