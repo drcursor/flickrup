@@ -35,4 +35,4 @@ sudo chmod a+x /etc/usbmount/mount.d/01_process
 - File extensions as well as exceptions can be configured in flickrup.py
 
 ## Usage
-- Whenever a USB mass storage device is connected (eg. SD/CF Card), flickrip will automatically upload the files to flickr (with private permissions). Uploaded files are renamed and a log file is created at the root of the storage device. Additionally the log file is sent to the email defined in the configuration file. After the email is sent, the mass storage device is unmounted, and can be safely removed.
+- Whenever a USB mass storage device is connected (eg. SD/CF Card), flickrup will automatically upload the files to flickr (with private permissions). Uploaded files are renamed and a log file is created at the root of the storage device. Additionally the log file is sent to the email defined in the configuration file. After the email is sent, the mass storage device is unmounted, and can be safely removed.
