@@ -1,7 +1,7 @@
 # flickrup
 
 ## Concept
-Simple script that automatically uploads all photo files from a connected removable disk/card to Flickr.
+Simple script that automatically uploads all photo files from a connected removable disk/card to Flickr (with Viewing Privacy set to Private).
 This should be run on a standalone device (eg. Raspberry PI).
 
 ## Requirements
@@ -35,4 +35,4 @@ sudo chmod a+x /etc/usbmount/mount.d/01_process
 - File extensions as well as exceptions can be configured in flickrup.py
 
 ## Usage
-- Whenever a USB mass storage device is connected (eg. SD/CF Card), flickrup will automatically upload the files to flickr (with private permissions). Uploaded files are renamed and a log file is created at the root of the storage device. Additionally the log file is sent to the email defined in the configuration file. After the email is sent, the mass storage device is unmounted, and can be safely removed.
+- Whenever a USB mass storage device is connected (eg. SD/CF Card, Camera), flickrup will automatically upload the files to Flickr (with with Viewing Privacy set to Private). Uploaded files are renamed and a log file is created at the root of the storage device. Additionally the log file is sent to the email defined in the configuration file. After the email is sent, the mass storage device is unmounted, and can be safely removed.
