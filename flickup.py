@@ -63,8 +63,8 @@ parser.add_argument('-l',
 # Extension to mark files as uploaded
 parser.add_argument('-e',
                     '--uploaded-extension',
-                    help='Extension to mark files as uploaded. Default: {}'.format(
-                        default_uploaded_extension),
+                    help='Extension to mark files as uploaded. Default: {}'
+                    .format(default_uploaded_extension),
                     required=False,
                     default=default_uploaded_extension
                     )
@@ -97,6 +97,12 @@ includes = ['*.jpg']  # for files only / case insensitive
 excludes = ["*." + args.uploaded_extension, args.log_file]
 
 flickr = flickrapi.FlickrAPI(api_key, api_secret, api_token)
+
+
+def touch(file_name):
+    with open(file_name, 'w+'):
+        pass
+    return True
 
 
 def send_mail(send_from, send_to, subject, text, files=[], server="localhost", port=25, username='', password='', isTls=True):
