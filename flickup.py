@@ -11,6 +11,7 @@ import configparser
 import argparse
 import ntpath
 
+
 import smtplib
 import os
 from email.mime.multipart import MIMEMultipart
@@ -18,6 +19,7 @@ from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 from email.utils import COMMASPACE, formatdate
 from email import encoders
+from tqdm import tqdm
 
 
 # Default vars
@@ -192,7 +194,7 @@ for root, dirs, files in os.walk(args.pictures + '/'):
     files = [f for f in files if not re.match(excludes, f.lower())]
     files = [f for f in files if re.match(includes, f.lower())]
 
-    for fname in files:
+    for fname in tqdm(files):
         control_file = ntpath.dirname(fname) + \
             '/' + \
             args.uploaded_prefix + \
