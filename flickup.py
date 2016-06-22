@@ -9,6 +9,7 @@ import datetime
 import sys
 import configparser
 import argparse
+import ntpath
 
 import smtplib
 import os
@@ -22,7 +23,7 @@ from email import encoders
 # Default vars
 default_args_config = '/etc/flickrup.conf'
 default_log_file = 'flickrup.log'
-default_uploaded_extension = 'done'
+default_uploaded_prefix = '.'
 
 # Initializing argparser
 parser = argparse.ArgumentParser(description='Flickrup: Flicker uploader.')
@@ -60,13 +61,13 @@ parser.add_argument('-l',
                     default=default_log_file
                     )
 
-# Extension to mark files as uploaded
-parser.add_argument('-e',
-                    '--uploaded-extension',
-                    help='Extension to mark files as uploaded. Default: {}'
-                    .format(default_uploaded_extension),
+# prefix for files created to mark uploaded files
+parser.add_argument('-u',
+                    '--uploaded-prefix',
+                    help='File prefix to prevent upload files twice. Default: {}'
+                    .format(default_uploaded_prefix),
                     required=False,
-                    default=default_uploaded_extension
+                    default=default_uploaded_prefix
                     )
 
 
@@ -94,7 +95,7 @@ except:
 
 includes = ['*.jpg']  # for files only / case insensitive
 # for dirs and files / case insensitive
-excludes = ["*." + args.uploaded_extension, args.log_file]
+excludes = [args.log_file]
 
 flickr = flickrapi.FlickrAPI(api_key, api_secret, api_token)
 
@@ -192,13 +193,19 @@ for root, dirs, files in os.walk(args.pictures + '/'):
     files = [f for f in files if re.match(includes, f.lower())]
 
     for fname in files:
-        try:
-            resp = flickr.upload(filename=fname, tags='rpiup', is_public=0)
-            pre, ext = os.path.splitext(fname)
-            os.rename(fname, pre + '.' + args.uploaded_extension)
-            logit(fname + " : " + resp.find('photoid').text)
-        except:
-            logit("Error on " + fname)
+        control_file = ntpath.dirname(fname) + \
+            '/' + \
+            args.uploaded_prefix + \
+            ntpath.basename(fname)
+
+        if not os.path.isfile(control_file):
+            try:
+                resp = flickr.upload(filename=fname, tags='rpiup', is_public=0)
+                pre, ext = os.path.splitext(fname)
+                touch(control_file)
+                logit(fname + " : " + resp.find('photoid').text)
+            except:
+                logit("Error on " + fname)
 
 logit("End run")
 cleanexit()
