@@ -21,8 +21,8 @@ sudo pip3 install flickrapi
 ~~~~
 - Copy files to correct locations
 ~~~~
-sudo cp flickrup.py /usb/bin
-sudo chmod a+x /usb/bin/flickrup.py
+sudo cp flickrup.py /usr/bin
+sudo chmod a+x /usr/bin/flickrup.py
 sudo cp flickrup.conf /etc
 sudo cp 01_process /etc/usbmount/mount.d
 sudo chmod a+x /etc/usbmount/mount.d/01_process
